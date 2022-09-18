@@ -10,7 +10,8 @@ fun main()
 
 	print("Kvadrattin’ tarepin kiritin' a=")
 	var a = scanner.nextInt()
-    println()
+    	println()
+	
 	var P = 4*a
 
 	print("Kvadrattin’ perimetri P=$P")
