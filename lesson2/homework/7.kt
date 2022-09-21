@@ -13,7 +13,7 @@ fun main()
     print("C = ")
     var C = scanner.nextInt()
 
-    var result = A < B && B < C
+    var result = (A < B && B < C)||(C < B && B < A)
 
     println("$B soni $A va $C sonlari orasida yotadi - shu rostmi? : $result")
 }
