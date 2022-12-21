@@ -1,0 +1,884 @@
+<?php
+
+namespace app\controllers;
+
+use Yii;
+use app\models\Contract;
+use app\models\ContractSearch;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+use app\models\Payme;
+use app\models\Company;
+use app\models\Absents;
+use xj\qrcode\QRcode;
+use xj\qrcode\widgets\Text;
+use yii\helpers\Url;
+use kartik\mpdf\Pdf;
+
+class ContractController extends Controller
+{
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
+
+    public function actionIndex()
+    {
+        $searchModel = new ContractSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $models =  $dataProvider->getModels();
+        $connection = Yii::$app->db;
+
+        foreach($models as $model){
+            if ($model->jan_pay - $model->jan_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `jan_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->feb_pay - $model->feb_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `feb_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->mar_pay - $model->mar_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `mar_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->apr_pay - $model->apr_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `apr_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->may_pay - $model->may_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `may_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->jun_pay - $model->jun_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `jun_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->jul_pay - $model->jul_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `jul_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->aug_pay - $model->aug_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `aug_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->sep_pay - $model->sep_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `sep_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->oct_pay - $model->oct_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `oct_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->nov_pay - $model->nov_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `nov_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->dec_pay - $model->dec_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `dec_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+        }
+
+        $models =  $dataProvider->getModels();
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'models' => $models,
+            'pagination' => $dataProvider->pagination,
+        ]);
+    }
+
+    public function actionExport()
+    {
+        $searchModel = new ContractSearch();
+        $dataProvider = $searchModel->searchexport(Yii::$app->request->queryParams);
+        $models =  $dataProvider->getModels();
+        $connection = Yii::$app->db;
+
+        foreach($models as $model){
+            if ($model->jan_pay - $model->jan_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `jan_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->feb_pay - $model->feb_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `feb_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->mar_pay - $model->mar_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `mar_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->apr_pay - $model->apr_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `apr_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->may_pay - $model->may_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `may_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->jun_pay - $model->jun_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `jun_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->jul_pay - $model->jul_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `jul_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->aug_pay - $model->aug_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `aug_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->sep_pay - $model->sep_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `sep_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->oct_pay - $model->oct_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `oct_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->nov_pay - $model->nov_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `nov_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+            if ($model->dec_pay - $model->dec_summ >= 0) {
+                $connection ->createCommand("
+                    UPDATE `contract` SET
+                        `dec_state` = 1
+                    WHERE `id` = $model->id")->execute();
+            }
+        }
+
+        $models =  $dataProvider->getModels();
+
+        return $this->render('export', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'models' => $models,
+            'pagination' => $dataProvider->pagination,
+        ]);
+    }
+
+
+
+    public function actionPayme($id, $id2)
+    {
+        $model = new Payme();
+        $contract = $this->findModel($id);
+        $connection = Yii::$app->db;
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->id_company = $contract->id_company;
+            $model->id_areas = $contract->id_areas;
+            $model->id_contract = $id;
+            $model->month = $id2;
+
+            switch ($id2) {
+                case '1':
+                    $month_name = 'yanvar';
+                    $jan = $model->summ+$contract->jan_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `jan_pay` = $jan
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '2':
+                    $month_name = 'fevral';
+                    $feb = $model->summ+$contract->feb_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `feb_pay` = $feb
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '3':
+                    $month_name = 'mart';
+                    $mar = $model->summ+$contract->mar_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `mar_pay` = $mar
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '4':
+                    $month_name = 'aprel';
+                    $apr = $model->summ+$contract->apr_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `apr_pay` = $apr
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '5':
+                    $month_name = 'may';
+                    $may = $model->summ+$contract->may_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `may_pay` = $may
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '6':
+                    $month_name = 'iyun';
+                    $jun = $model->summ+$contract->jun_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `jun_pay` = $jun
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '7':
+                    $month_name = 'iyul';
+                    $jul = $model->summ+$contract->jul_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `jul_pay` = $jul
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '8':
+                    $month_name = 'avgust';
+                    $aug = $model->summ+$contract->aug_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `aug_pay` = $aug
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '9':
+                    $month_name = 'sentyabr';
+                    $sep = $model->summ+$contract->sep_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `sep_pay` = $sep
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '10':
+                    $month_name = 'oktyabr';
+                    $oct = $model->summ+$contract->oct_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `oct_pay` = $oct
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '11':
+                    $month_name = 'noyabr';
+                    $nov = $model->summ+$contract->nov_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `nov_pay` = $nov
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '12':
+                    $month_name = 'dekabr';
+                    $dec = $model->summ+$contract->dec_pay;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `dec_pay` = $dec
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+            }
+
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('0000-00-00 00:00:00');
+            $model->created_by = Yii::$app->user->identity->id;
+            $model->updated_by = 0;
+            $model->state = 0;
+            $model->save();
+            
+            $company = Company::find()->where(['id'=>$contract->id_company])->one();
+            $phone = preg_replace("/[^0-9]/", '', $company->telephone);
+            $text = "Xojeyli diyxan bazar JShJ. Infrastruktura ushın ".$model->summ." swm ".$month_name." ayına tolem qabıl etildi. https://odbazar.uz/contract/check?id=".$model->id;
+            /********************************SMS*********************************************************/
+            $url = "https://gate.sms24.uz/api/v1/send?";
+            
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            
+            $headers = array(
+               "Token: 8AVT20nkPxnUH8JiNfps",
+               "Content-Type: application/x-www-form-urlencoded",
+            );
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            
+            $data = '{"text":"'.$text.'", "phone":"'.$phone.'"}';
+            
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            
+            $resp = curl_exec($curl);
+            curl_close($curl);
+            //var_dump($resp);
+            /********************************SMS*********************************************************/
+            
+            return $this->redirect(['index']);
+        }
+
+        return $this->renderAjax('payme', [
+            'model' => $model,
+            'contract' => $contract
+        ]);
+    }
+
+    public function actionFilters()
+    {
+        $searchModel = new ContractSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->renderAjax('_search', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'model' => $searchModel,
+        ]);
+    }
+
+    public function actionView($id) {
+        $model = $this->findModel($id);
+
+        return $this->renderAjax('view', [
+            'model' => $model
+        ]);
+    }
+
+    public function actionReport() {
+        
+        return $this->renderAjax('report');
+    }
+
+    public function actionMreport() 
+    {
+        $contracts_data = Contract::find()->where(['id_areas' => Yii::$app->user->identity->id_areas])->all();    
+        return $this->render('month_report', [
+            'contracts_data' => $contracts_data    
+        ]);
+    }
+
+    public function actionHistory($id, $id2) {
+        $model = $this->findModel($id);
+        $payments_data = Payme::find()->where(['id_contract' => $id])->andWhere(['month' => $id2])->all();
+
+        return $this->renderAjax('history', [
+            'model' => $model,
+            'id' => $id,
+            'id2' => $id2,
+            'payments_data' => $payments_data,
+        ]);
+    }
+
+
+
+    public function actionCheck($id){
+
+        $payment = Payme::find()->where(['id' => $id])->one();
+        $contract = Contract::find()->where(['id' => $payment->id_contract])->one();
+        $company = Company::find()->where(['id' => $payment->id_company])->one();
+
+        $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8,
+                'content' => '
+                <div class="text-center"><strong>Квитанция № 000'.$payment->id.'</strong><br/><br/></div>
+    <table class="table table-sm table-bordered table-hover" cellspacing="0" width="100%">
+        <tbody>
+        <tr>
+            <td width="21%" rowspan="2" class="text-center" style="vertical-align: middle;">
+
+            '.Text::widget([
+                'outputDir' => '@webroot/upload/qrcode',
+                'outputDirWeb' => '@web/upload/qrcode',
+                'ecLevel' => QRcode::QR_ECLEVEL_L,
+                'text' => Url::base('http').'/contract/check?id='.$id,
+                'size' => 4,
+            ]).'</td>
+            <td width="21%" align="center">
+                наименование организации, принимающей платеж<br/>
+                <strong>«Хожели дийхан базары» ЖШЖ</strong>
+            </td>
+        </tr>
+        <tr>
+            <td width="21%">
+                <strong>наименование банка:</strong> Хужайли т., «АТ Халқ банки» Хужайли филиали,<br/>
+                <strong>р/с организации:</strong> 20208000800414741001,
+                <strong>МФО:</strong> 00839, <strong>ИНН:</strong> 200396088
+            </td>
+        </tr>
+        <tr>
+            <td width="21%" style="vertical-align: middle;" align="center" rowspan="2">
+                <strong>принято от:</strong>
+            </td>
+            <td style="vertical-align: middle;" align="center">
+                наименование организации: <strong>'.$company->name.'</strong><br/>
+                адресс: <strong>'.$contract->address.'</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>наименование банка:</strong> '.$company->bank.',<br/>
+                <strong>р/с организации:</strong> '.$company->rschet.',
+                <strong>МФО:</strong> '.$company->mfo.', <strong>ИНН:</strong> '.$company->inn.'
+            </td>
+        </tr>
+        <tr>
+            <td width="21%" style="vertical-align: middle;" align="center">
+                <strong>назначение платежа:</strong>
+            </td>
+            <td style="vertical-align: middle;" align="center">
+Базарлар ҳам саўда комплекслери балансындағы имарат ҳам
+қўрылмалардан пайдаланғанлығы ўшын ижара төлем
+            </td>
+        </tr>
+        <tr>
+            <td width="21%" style="vertical-align: middle;" align="center">
+                <strong>комментария:</strong>
+            </td>
+            <td>
+                '.$payment->comment.'
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center">
+                <strong>дата платежа:</strong><br/> '.$payment->created_at.'
+            </td>
+            <td width="21%" style="vertical-align: middle;" align="center">
+                <strong>сумма платежа :</strong> '.$payment->summ.' сум.
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+    <hr/>
+    <br/>
+    <br/>
+    
+    <div class="text-center"><strong>Квитанция № 000'.$payment->id.'</strong><br/><br/></div>
+    <table class="table table-sm table-bordered table-hover" cellspacing="0" width="100%">
+        <tbody>
+        <tr>
+            <td width="21%" rowspan="2" class="text-center" style="vertical-align: middle;">
+
+            '.Text::widget([
+                'outputDir' => '@webroot/upload/qrcode',
+                'outputDirWeb' => '@web/upload/qrcode',
+                'ecLevel' => QRcode::QR_ECLEVEL_L,
+                'text' => Url::base('http').'/contract/check?id='.$id,
+                'size' => 4,
+            ]).'</td>
+            <td width="21%" align="center">
+                наименование организации, принимающей платеж<br/>
+                <strong>«Хожели дийхан базары» ЖШЖ</strong>
+            </td>
+        </tr>
+        <tr>
+            <td width="21%">
+                <strong>наименование банка:</strong> Хужайли т., «АТ Халқ банки» Хужайли филиали,<br/>
+                <strong>р/с организации:</strong> 20208000800414741001,
+                <strong>МФО:</strong> 00839, <strong>ИНН:</strong> 200396088
+            </td>
+        </tr>
+        <tr>
+            <td width="21%" style="vertical-align: middle;" align="center" rowspan="2">
+                <strong>принято от:</strong>
+            </td>
+            <td style="vertical-align: middle;" align="center">
+                наименование организации: <strong>'.$company->name.'</strong><br/>
+                адресс: <strong>'.$contract->address.'</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>наименование банка:</strong> '.$company->bank.',<br/>
+                <strong>р/с организации:</strong> '.$company->rschet.',
+                <strong>МФО:</strong> '.$company->mfo.', <strong>ИНН:</strong> '.$company->inn.'
+            </td>
+        </tr>
+        <tr>
+            <td width="21%" style="vertical-align: middle;" align="center">
+                <strong>назначение платежа:</strong>
+            </td>
+            <td style="vertical-align: middle;" align="center">
+Базарлар ҳам саўда комплекслери балансындағы имарат ҳам
+қўрылмалардан пайдаланғанлығы ўшын ижара төлем
+            </td>
+        </tr>
+        <tr>
+            <td width="21%" style="vertical-align: middle;" align="center">
+                <strong>комментария:</strong>
+            </td>
+            <td>
+                '.$payment->comment.'
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center">
+                <strong>дата платежа:</strong><br/> '.$payment->created_at.'
+            </td>
+            <td width="21%" style="vertical-align: middle;" align="center">
+                <strong>сумма платежа :</strong> '.$payment->summ.' сум.
+            </td>
+        </tr>
+        </tbody>
+    </table>',
+
+           ]);
+          return $pdf->render();
+    }
+
+    public function actionCreate()
+    {
+        $model = new Contract();
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->jan_pay = 0;
+            $model->jan_state = 0;
+            $model->feb_pay = 0;
+            $model->feb_state = 0;
+            $model->mar_pay = 0;
+            $model->mar_state = 0;
+            $model->apr_pay = 0;
+            $model->apr_state = 0;
+            $model->may_pay = 0;
+            $model->may_state = 0;
+            $model->jun_pay = 0;
+            $model->jun_state = 0;
+            $model->jul_pay = 0;
+            $model->jul_state = 0;
+            $model->aug_pay = 0;
+            $model->aug_state = 0;
+            $model->sep_pay = 0;
+            $model->sep_state = 0;
+            $model->oct_pay = 0;
+            $model->oct_state = 0;
+            $model->nov_pay = 0;
+            $model->nov_state = 0;
+            $model->dec_pay = 0;
+            $model->dec_state = 0;
+
+            $model->id_areas = Yii::$app->user->identity->id_areas;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('0000-00-00 00:00:00');
+            $model->created_by = Yii::$app->user->identity->id;
+            $model->updated_by = 0;
+            $model->state = 0;
+            $model->save();
+            
+            return $this->redirect(['index']);
+        }
+        return $this->renderAjax('create', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionUpdate($id) {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->updated_at = date('Y-m-d H:i:s');
+            $model->updated_by = Yii::$app->user->identity->id;
+            $model->save();
+            
+            return $this->redirect(['index']);
+        }elseif (Yii::$app->request->isAjax) {
+            
+            return $this->renderAjax('_form', [
+                'model' => $model
+            ]);
+
+        } else {
+
+            return $this->render('_form', [
+                'model' => $model
+            ]);
+
+        }
+    }
+
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+    
+    public function actionDeletepay($paymeid, $month)
+    {
+        $connection = Yii::$app->db;
+        
+        $model = Payme::find()->where(['id' => $paymeid])->one();
+        $contract = Contract::find()->where(['id' => $model->id_contract])->one();
+        $id = $contract->id;
+        
+        switch ($month) {
+                case '1':
+                    $jan = $contract->jan_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `jan_pay` = $jan
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '2':
+                    $feb = $contract->feb_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `feb_pay` = $feb
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '3':
+                    $mar = $contract->mar_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `mar_pay` = $mar
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '4':
+                    $apr = $contract->apr_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `apr_pay` = $apr
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '5':
+                    $may = $contract->may_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `may_pay` = $may
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '6':
+                    $jun = $contract->jun_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `jun_pay` = $jun
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '7':
+                    $jul = $contract->jul_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `jul_pay` = $jul
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '8':
+                    $aug = $contract->aug_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `aug_pay` = $aug
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '9':
+                    $sep = $contract->sep_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `sep_pay` = $sep
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '10':
+                    $oct = $contract->oct_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `oct_pay` = $oct
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '11':
+                    $nov = $contract->nov_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `nov_pay` = $nov
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+                case '12':
+                    $dec = $contract->dec_pay-$model->summ;
+                    $connection ->createCommand("
+                        UPDATE `contract` SET
+                            `dec_pay` = $dec
+                        WHERE `id` = $id
+                            ")->execute();
+                    break;
+            }
+                
+        $model->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Contract::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
+    public function actionJan($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('jan', [
+    		'model' => $model
+    	]);
+    }
+    
+    public function actionFeb($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('feb', [
+    		'model' => $model
+    	]);
+    }
+    
+    public function actionMar($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('mar', [
+    		'model' => $model
+    	]);
+    }
+    
+    public function actionAprl($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('aprl', [
+    		'model' => $model
+    	]);
+    }
+    
+    public function actionMay($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('may', [
+    		'model' => $model
+    	]);
+    }
+    
+    public function actionJun($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('jun', [
+    		'model' => $model
+    	]);
+    }
+    
+    public function actionJul($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('jul', [
+    		'model' => $model
+    	]);
+    }
+    
+    public function actionAug($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('aug', [
+    		'model' => $model
+    	]);
+    }
+    
+    public function actionSep($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('sep', [
+    		'model' => $model
+    	]);
+    }
+    
+    public function actionOct($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('oct', [
+    		'model' => $model
+    	]);
+    }
+    
+    public function actionNov($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('nov', [
+    		'model' => $model
+    	]);
+    }
+    
+    public function actionDec($id) {
+    	$model = $this->findModel($id);
+    
+    	return $this->renderAjax('dec', [
+    		'model' => $model
+    	]);
+    }
+    
+
+}
