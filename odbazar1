@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Contract;
-use app\models\ContractSearch;
+use app\models\Contract22;
+use app\models\Contract22Search;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -16,7 +16,7 @@ use xj\qrcode\widgets\Text;
 use yii\helpers\Url;
 use kartik\mpdf\Pdf;
 
-class ContractController extends Controller
+class Contract22Controller extends Controller
 {
     public function behaviors()
     {
@@ -32,7 +32,7 @@ class ContractController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new ContractSearch();
+        $searchModel = new Contract22Search();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $models =  $dataProvider->getModels();
         $connection = Yii::$app->db;
@@ -40,73 +40,73 @@ class ContractController extends Controller
         foreach($models as $model){
             if ($model->jan_pay - $model->jan_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `jan_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->feb_pay - $model->feb_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `feb_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->mar_pay - $model->mar_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `mar_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->apr_pay - $model->apr_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `apr_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->may_pay - $model->may_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `may_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->jun_pay - $model->jun_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `jun_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->jul_pay - $model->jul_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `jul_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->aug_pay - $model->aug_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `aug_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->sep_pay - $model->sep_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `sep_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->oct_pay - $model->oct_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `oct_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->nov_pay - $model->nov_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `nov_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->dec_pay - $model->dec_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `dec_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
@@ -124,7 +124,7 @@ class ContractController extends Controller
 
     public function actionExport()
     {
-        $searchModel = new ContractSearch();
+        $searchModel = new Contract22Search();
         $dataProvider = $searchModel->searchexport(Yii::$app->request->queryParams);
         $models =  $dataProvider->getModels();
         $connection = Yii::$app->db;
@@ -132,73 +132,73 @@ class ContractController extends Controller
         foreach($models as $model){
             if ($model->jan_pay - $model->jan_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `jan_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->feb_pay - $model->feb_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `feb_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->mar_pay - $model->mar_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `mar_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->apr_pay - $model->apr_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `apr_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->may_pay - $model->may_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `may_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->jun_pay - $model->jun_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `jun_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->jul_pay - $model->jul_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `jul_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->aug_pay - $model->aug_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `aug_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->sep_pay - $model->sep_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `sep_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->oct_pay - $model->oct_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `oct_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->nov_pay - $model->nov_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `nov_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
             if ($model->dec_pay - $model->dec_summ >= 0) {
                 $connection ->createCommand("
-                    UPDATE `contract` SET
+                    UPDATE `contract22` SET
                         `dec_state` = 1
                     WHERE `id` = $model->id")->execute();
             }
@@ -219,120 +219,120 @@ class ContractController extends Controller
     public function actionPayme($id, $id2)
     {
         $model = new Payme();
-        $contract = $this->findModel($id);
+        $contract22 = $this->findModel($id);
         $connection = Yii::$app->db;
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->id_company = $contract->id_company;
-            $model->id_areas = $contract->id_areas;
+            $model->id_company = $contract22->id_company;
+            $model->id_areas = $contract22->id_areas;
             $model->id_contract = $id;
             $model->month = $id2;
 
             switch ($id2) {
                 case '1':
                     $month_name = 'yanvar';
-                    $jan = $model->summ+$contract->jan_pay;
+                    $jan = $model->summ+$contract22->jan_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `jan_pay` = $jan
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '2':
                     $month_name = 'fevral';
-                    $feb = $model->summ+$contract->feb_pay;
+                    $feb = $model->summ+$contract22->feb_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `feb_pay` = $feb
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '3':
                     $month_name = 'mart';
-                    $mar = $model->summ+$contract->mar_pay;
+                    $mar = $model->summ+$contract22->mar_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `mar_pay` = $mar
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '4':
                     $month_name = 'aprel';
-                    $apr = $model->summ+$contract->apr_pay;
+                    $apr = $model->summ+$contract22->apr_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `apr_pay` = $apr
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '5':
                     $month_name = 'may';
-                    $may = $model->summ+$contract->may_pay;
+                    $may = $model->summ+$contract22->may_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `may_pay` = $may
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '6':
                     $month_name = 'iyun';
-                    $jun = $model->summ+$contract->jun_pay;
+                    $jun = $model->summ+$contract22->jun_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `jun_pay` = $jun
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '7':
                     $month_name = 'iyul';
-                    $jul = $model->summ+$contract->jul_pay;
+                    $jul = $model->summ+$contract22->jul_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `jul_pay` = $jul
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '8':
                     $month_name = 'avgust';
-                    $aug = $model->summ+$contract->aug_pay;
+                    $aug = $model->summ+$contract22->aug_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `aug_pay` = $aug
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '9':
                     $month_name = 'sentyabr';
-                    $sep = $model->summ+$contract->sep_pay;
+                    $sep = $model->summ+$contract22->sep_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `sep_pay` = $sep
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '10':
                     $month_name = 'oktyabr';
-                    $oct = $model->summ+$contract->oct_pay;
+                    $oct = $model->summ+$contract22->oct_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `oct_pay` = $oct
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '11':
                     $month_name = 'noyabr';
-                    $nov = $model->summ+$contract->nov_pay;
+                    $nov = $model->summ+$contract22->nov_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `nov_pay` = $nov
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '12':
                     $month_name = 'dekabr';
-                    $dec = $model->summ+$contract->dec_pay;
+                    $dec = $model->summ+$contract22->dec_pay;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `dec_pay` = $dec
                         WHERE `id` = $id
                             ")->execute();
@@ -346,9 +346,9 @@ class ContractController extends Controller
             $model->state = 0;
             $model->save();
             
-            $company = Company::find()->where(['id'=>$contract->id_company])->one();
+            $company = Company::find()->where(['id'=>$contract22->id_company])->one();
             $phone = preg_replace("/[^0-9]/", '', $company->telephone);
-            $text = "Xojeyli diyxan bazar JShJ. Infrastruktura ushın ".$model->summ." swm ".$month_name." ayına tolem qabıl etildi. https://odbazar.uz/contract/check?id=".$model->id;
+            $text = "Xojeyli diyxan bazar JShJ. Infrastruktura ushin ".$model->summ." swm ".$month_name." ayina tolem qabil etildi. https://odbazar.uz/contract22/check?id=".$model->id;
             /********************************SMS*********************************************************/
             $url = "https://gate.sms24.uz/api/v1/send?";
             
@@ -380,13 +380,13 @@ class ContractController extends Controller
 
         return $this->renderAjax('payme', [
             'model' => $model,
-            'contract' => $contract
+            'contract22' => $contract22
         ]);
     }
 
     public function actionFilters()
     {
-        $searchModel = new ContractSearch();
+        $searchModel = new Contract22Search();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->renderAjax('_search', [
@@ -403,6 +403,45 @@ class ContractController extends Controller
             'model' => $model
         ]);
     }
+    
+    public function actionSms($id, $summa) {
+        $data = $this->findModel($id);
+        $company = Company::find()->where(['id' => $data->id_company])->one();
+        
+        
+            $phone = preg_replace("/[^0-9]/", '', $company->telephone);
+            $text = "Hurmetli ".$company->name." Sizden infrasturkturadan ".$summa." som qarizinizdi tolewinizdi soraymiz. Oz waqtinda tolenbegen qariz ushin penya esaplaniladi";
+            /********************************SMS*********************************************************/
+            $url = "https://gate.sms24.uz/api/v1/send?";
+            
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            
+            $headers = array(
+               "Token: 8AVT20nkPxnUH8JiNfps",
+               "Content-Type: application/x-www-form-urlencoded",
+            );
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            
+            $data = '{"text":"'.$text.'", "phone":"'.$phone.'"}';
+            
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            
+            $resp = curl_exec($curl);
+            curl_close($curl);
+            var_dump($resp);
+            /********************************SMS*********************************************************/
+        
+        return $this->renderAjax('sms', [
+            'company' => $company,
+            'summa' => $summa
+        ]);
+    }
 
     public function actionReport() {
         
@@ -411,9 +450,9 @@ class ContractController extends Controller
 
     public function actionMreport() 
     {
-        $contracts_data = Contract::find()->where(['id_areas' => Yii::$app->user->identity->id_areas])->all();    
+        $contract22s_data = Contract22::find()->where(['id_areas' => Yii::$app->user->identity->id_areas])->all();    
         return $this->render('month_report', [
-            'contracts_data' => $contracts_data    
+            'contracts_data' => $contract22s_data    
         ]);
     }
 
@@ -434,7 +473,7 @@ class ContractController extends Controller
     public function actionCheck($id){
 
         $payment = Payme::find()->where(['id' => $id])->one();
-        $contract = Contract::find()->where(['id' => $payment->id_contract])->one();
+        $contract22 = Contract22::find()->where(['id' => $payment->id_contract])->one();
         $company = Company::find()->where(['id' => $payment->id_company])->one();
 
         $pdf = new Pdf([
@@ -450,7 +489,7 @@ class ContractController extends Controller
                 'outputDir' => '@webroot/upload/qrcode',
                 'outputDirWeb' => '@web/upload/qrcode',
                 'ecLevel' => QRcode::QR_ECLEVEL_L,
-                'text' => Url::base('http').'/contract/check?id='.$id,
+                'text' => Url::base('http').'/contract22/check?id='.$id,
                 'size' => 4,
             ]).'</td>
             <td width="21%" align="center">
@@ -471,7 +510,7 @@ class ContractController extends Controller
             </td>
             <td style="vertical-align: middle;" align="center">
                 наименование организации: <strong>'.$company->name.'</strong><br/>
-                адресс: <strong>'.$contract->address.'</strong>
+                адресс: <strong>'.$contract22->address.'</strong>
             </td>
         </tr>
         <tr>
@@ -524,7 +563,7 @@ class ContractController extends Controller
                 'outputDir' => '@webroot/upload/qrcode',
                 'outputDirWeb' => '@web/upload/qrcode',
                 'ecLevel' => QRcode::QR_ECLEVEL_L,
-                'text' => Url::base('http').'/contract/check?id='.$id,
+                'text' => Url::base('http').'/contract22/check?id='.$id,
                 'size' => 4,
             ]).'</td>
             <td width="21%" align="center">
@@ -545,7 +584,7 @@ class ContractController extends Controller
             </td>
             <td style="vertical-align: middle;" align="center">
                 наименование организации: <strong>'.$company->name.'</strong><br/>
-                адресс: <strong>'.$contract->address.'</strong>
+                адресс: <strong>'.$contract22->address.'</strong>
             </td>
         </tr>
         <tr>
@@ -589,7 +628,7 @@ class ContractController extends Controller
 
     public function actionCreate()
     {
-        $model = new Contract();
+        $model = new Contract22();
         if ($model->load(Yii::$app->request->post())) {
 
             $model->jan_pay = 0;
@@ -668,102 +707,102 @@ class ContractController extends Controller
         $connection = Yii::$app->db;
         
         $model = Payme::find()->where(['id' => $paymeid])->one();
-        $contract = Contract::find()->where(['id' => $model->id_contract])->one();
-        $id = $contract->id;
+        $contract22 = Contract22::find()->where(['id' => $model->id_contract])->one();
+        $id = $contract22->id;
         
         switch ($month) {
                 case '1':
-                    $jan = $contract->jan_pay-$model->summ;
+                    $jan = $contract22->jan_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `jan_pay` = $jan
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '2':
-                    $feb = $contract->feb_pay-$model->summ;
+                    $feb = $contract22->feb_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `feb_pay` = $feb
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '3':
-                    $mar = $contract->mar_pay-$model->summ;
+                    $mar = $contract22->mar_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `mar_pay` = $mar
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '4':
-                    $apr = $contract->apr_pay-$model->summ;
+                    $apr = $contract22->apr_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `apr_pay` = $apr
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '5':
-                    $may = $contract->may_pay-$model->summ;
+                    $may = $contract22->may_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `may_pay` = $may
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '6':
-                    $jun = $contract->jun_pay-$model->summ;
+                    $jun = $contract22->jun_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `jun_pay` = $jun
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '7':
-                    $jul = $contract->jul_pay-$model->summ;
+                    $jul = $contract22->jul_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `jul_pay` = $jul
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '8':
-                    $aug = $contract->aug_pay-$model->summ;
+                    $aug = $contract22->aug_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `aug_pay` = $aug
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '9':
-                    $sep = $contract->sep_pay-$model->summ;
+                    $sep = $contract22->sep_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `sep_pay` = $sep
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '10':
-                    $oct = $contract->oct_pay-$model->summ;
+                    $oct = $contract22->oct_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `oct_pay` = $oct
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '11':
-                    $nov = $contract->nov_pay-$model->summ;
+                    $nov = $contract22->nov_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `nov_pay` = $nov
                         WHERE `id` = $id
                             ")->execute();
                     break;
                 case '12':
-                    $dec = $contract->dec_pay-$model->summ;
+                    $dec = $contract22->dec_pay-$model->summ;
                     $connection ->createCommand("
-                        UPDATE `contract` SET
+                        UPDATE `contract22` SET
                             `dec_pay` = $dec
                         WHERE `id` = $id
                             ")->execute();
@@ -777,7 +816,7 @@ class ContractController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = Contract::findOne($id)) !== null) {
+        if (($model = Contract22::findOne($id)) !== null) {
             return $model;
         }
 
@@ -785,99 +824,99 @@ class ContractController extends Controller
     }
     
     public function actionJan($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('jan', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('jan', [
+            'model' => $model
+        ]);
     }
     
     public function actionFeb($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('feb', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('feb', [
+            'model' => $model
+        ]);
     }
     
     public function actionMar($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('mar', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('mar', [
+            'model' => $model
+        ]);
     }
     
     public function actionAprl($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('aprl', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('aprl', [
+            'model' => $model
+        ]);
     }
     
     public function actionMay($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('may', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('may', [
+            'model' => $model
+        ]);
     }
     
     public function actionJun($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('jun', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('jun', [
+            'model' => $model
+        ]);
     }
     
     public function actionJul($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('jul', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('jul', [
+            'model' => $model
+        ]);
     }
     
     public function actionAug($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('aug', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('aug', [
+            'model' => $model
+        ]);
     }
     
     public function actionSep($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('sep', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('sep', [
+            'model' => $model
+        ]);
     }
     
     public function actionOct($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('oct', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('oct', [
+            'model' => $model
+        ]);
     }
     
     public function actionNov($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('nov', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('nov', [
+            'model' => $model
+        ]);
     }
     
     public function actionDec($id) {
-    	$model = $this->findModel($id);
+        $model = $this->findModel($id);
     
-    	return $this->renderAjax('dec', [
-    		'model' => $model
-    	]);
+        return $this->renderAjax('dec', [
+            'model' => $model
+        ]);
     }
     
 
